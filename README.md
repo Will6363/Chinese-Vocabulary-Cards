@@ -2,7 +2,7 @@
 This project is created using Express (api) and React (client)
 ## Running App
 requires user to run:
-### 'npm start'
+### `npm start`
 in both the "/api" and "/client" folders to start the app.\
 "/api" will run on [http://localhost:9000](http://localhost:9000). and will serve vocabulary to the client.\
 "/client" will run on [http://localhost:3000](http://localhost:3000) and will be where the App is displayed.
