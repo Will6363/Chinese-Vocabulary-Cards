@@ -5,6 +5,27 @@
     transition: 0.3s;
     animation:ease-in;
 }
+
+.card-container-yellow{
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px -5px;
+    transition: 0.3s;
+    animation:ease-in;
+    border-style: solid;
+    border-color: yellow;
+}
+
+.card-container-green{
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px -5px;
+    transition: 0.3s;
+    animation:ease-in;
+    border-style: solid;
+    border-color: green;
+}
+
 /*
 .card-container:hover{
     transform: scale(1.1);

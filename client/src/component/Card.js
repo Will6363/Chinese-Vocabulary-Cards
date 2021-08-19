@@ -24,7 +24,7 @@ function Card(props) {
     }
 
     return (
-        <div className='card-container'>
+        <div className={values.input === values.target ? 'card-container-green' : 'card-container-yellow'}>
             <div className='card-content'>
                 {values.image !== undefined ? <div className='card-image'>{values.image}</div> : null}
                 <div className='card-title'>
