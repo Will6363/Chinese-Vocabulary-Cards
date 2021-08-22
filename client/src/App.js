@@ -3,6 +3,7 @@ import Card from './component/Card';
 import Radio from './component/Radio';
 import shuffle from './functions/shuffle';
 import randomInt from './functions/randomInt';
+import './App.css'
 
 class App extends Component {
   constructor(props) {
@@ -80,6 +81,7 @@ class App extends Component {
   */
   handleInputUpdate = (input) => {
     this.inputUpdate(input, this.state.selectedNum)
+
   }
 
   /*
@@ -109,21 +111,26 @@ class App extends Component {
   async handleClick() {
     // check if we need to call api
     let response;
-    if (this.state.sampleSize !== this.state.wordStack.length) {
+    if (this.state.sampleSize != this.state.wordStack.length) {
       response = await this.fetchData(this.host, this.state.sampleSize);
-      response = response != null ? shuffle(response) : []
+      if (response != null) {
+        response = shuffle(response);
+      } else {
+        response = this.state.wordStack
+        alert ("There was a problem retrieving data. The last selection ["+response.length+"] was used.")
+      }
     } else {
       response = shuffle(this.state.wordStack)
     }
     // checks if server responded
-    if (response != null) {
+    //if (response != null) {
       this.setState({selectedNum: 0}) //resets current card
       this.setState({wordStack: response}, () => {
         this.setState({ cards: this.generateCards(this.state.wordStack.slice(0, this.state.stackSize)) }, () => {
           this.setState({ tabs: this.generateTabs(this.state.cards.map((item) => { return item["title"] })) })
         })
       })
-    }
+    //}
   }
 
   render() {
@@ -137,12 +144,14 @@ class App extends Component {
             {"text": "20", "value":  20},
             {"text": "50", "value": 50},
             {"text": "100", "value": 100},
-            {"text": "200", "value": 200}
+            {"text": "200", "value": 200},
+            {"text": "1k", "value": 1000}
           ]}
           name="sampleSize"
           id="radio"
         />
         <button onClick={this.handleClick}>New Quiz!</button>
+        <button onClick={() => {console.log(this.state.wordStack)}}>New Quiz2!</button>
         <select value={this.state.selectedNum} name="selectedNum" onChange={this.handleSelectionChange}>
           {this.state.tabs}
         </select>
